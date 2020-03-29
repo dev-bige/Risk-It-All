@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Sign Up</title>
+        <link rel="stylesheet" type="text/css" href="sign-up.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+    </head>
+    <body>
+        <div class="box">
+            <h3><strong>Sign Up</strong></h3>
+            <form>
+                <label for="firstName">First Name:</label><br>
+                <input type="text" id="firstName" name="firstName" size=48><br>
+                <label for="lastName">Last Name:</label><br>
+                <input type="text" id="lastName" name="lastName" size=48><br>
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" size="48"><br>
+                <label for="username">Username: (shown to other players)</label><br>
+                <input type="text" id="username" name="username" size=48><br>
+                <label for="password">Password:</label><br>
+                <input type="password" id="password" name="password" size=48><br>
+                <label for="re-enter">Re-enter Password:</label><br>
+                <input type="password" id="re-enter" name="re-enter" size=48><br>
+                <label for="experience">Experience:</label><br>
+                    <select id="experience">
+                        <option value="empty"></option>
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="expert">Expert</option>
+                    </select>
+            </form>
+            <div class="sign-up">
+                <button type="button" class="btn btn-primary">Sign Up!</button>
+            </div>
+            <div class="bottom">
+                <p>If you already have an account, <a href="../login/login.html" alt="login">press here to login</a></p>
+            </div>
+        </div>
+    </body>
+</html>
