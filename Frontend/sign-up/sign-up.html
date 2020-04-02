@@ -4,11 +4,12 @@
         <title>Sign Up</title>
         <link rel="stylesheet" type="text/css" href="sign-up.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+        <script src="sign-up.js"></script>
     </head>
     <body>
         <div class="box">
             <h3><strong>Sign Up</strong></h3>
-            <form>
+            <form id="sign-in-form">
                 <label for="firstName">First Name:</label><br>
                 <input type="text" id="firstName" name="firstName" size=48><br>
                 <label for="lastName">Last Name:</label><br>
@@ -30,11 +31,29 @@
                     </select>
             </form>
             <div class="sign-up">
-                <button type="button" class="btn btn-primary">Sign Up!</button>
+                <button type="button" id="buttonSignUp" class="btn btn-primary">Sign Up!</button>
             </div>
             <div class="bottom">
                 <p>If you already have an account, <a href="../login/login.html" alt="login">press here to login</a></p>
             </div>
         </div>
+         <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-auth.js"></script>
+        <script>
+            // Your web app's Firebase configuration
+            var firebaseConfig = {
+                apiKey: "AIzaSyBbPzs7W9onYzxPFjSykAsEv9GaSzfQLZc",
+                authDomain: "risk-2ccad.firebaseapp.com",
+                databaseURL: "https://risk-2ccad.firebaseio.com",
+                projectId: "risk-2ccad",
+                storageBucket: "risk-2ccad.appspot.com",
+                messagingSenderId: "472238457186",
+                appId: "1:472238457186:web:f742c38fce67cab89b6c3b"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            const auth = firebase.auth();
+        </script>
     </body>
 </html>
