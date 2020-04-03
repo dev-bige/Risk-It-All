@@ -1,0 +1,44 @@
+html, body{
+	height: 100%;
+	margin: 0;
+}
+
+div{
+	height: 100%;
+}
+
+.left-tab{
+	text-align: center;
+	background-color: #888c8c;
+	width: 20%;
+	float: left;
+}
+
+.board {
+	background-color: black;
+	width: 60%;
+	float: left;
+}
+
+.right-tab{
+	text-align: center;
+	background-color: black;
+	width: 20%;
+	float: right;
+}
+
+.title{
+	background-color: #cc1616;
+	height: 50px;
+}
+
+.skip-button{
+	position: absolute;
+	bottom: 20%;
+	left: 4%;
+}
+
+.player{
+	height: 15%;
+	margin: 5%;
+}
