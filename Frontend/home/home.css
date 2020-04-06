@@ -1,0 +1,64 @@
+body {
+    background-image: url("../images/login-background.jpeg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.main {
+    position: relative;
+}
+
+.box {
+    background-color: azure;
+    border: 7px solid bisque;
+    border-radius: 10%;
+    height: 375px;
+    width: 400px;
+    margin: -70px 0 0 -120px;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+}
+
+.box p {
+    text-align: center;
+}
+
+.box form {
+    padding-left: 5px;
+    padding-bottom: 10px;
+}
+
+.box h3 {
+    text-align: center;
+}
+
+.login {
+    display: flex;
+    justify-content: center;
+}
+
+.google-login {
+    display: flex;
+    justify-content: center;
+    padding-top: 5px;
+}
+
+.login-buttons img{
+    float: left;
+}
+
+.login-buttons p {
+    padding-top: 5px;
+}
+
+.bottom {
+    padding-top: 15px;
+    text-align: center;
+}
+
+#error {
+    color: red;
+}
