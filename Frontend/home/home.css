@@ -24,41 +24,15 @@ body {
 
 .box p {
     text-align: center;
-}
-
-.box form {
-    padding-left: 5px;
-    padding-bottom: 10px;
+	padding-top: 25px;
 }
 
 .box h3 {
     text-align: center;
 }
 
-.login {
-    display: flex;
+.GameModeButton {
+	display: flex;
     justify-content: center;
-}
-
-.google-login {
-    display: flex;
-    justify-content: center;
-    padding-top: 5px;
-}
-
-.login-buttons img{
-    float: left;
-}
-
-.login-buttons p {
-    padding-top: 5px;
-}
-
-.bottom {
-    padding-top: 15px;
-    text-align: center;
-}
-
-#error {
-    color: red;
+	padding-top: 50px;
 }
