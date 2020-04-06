@@ -36,3 +36,15 @@ body {
     justify-content: center;
 	padding-top: 50px;
 }
+
+.GameButton{
+	font-size: 17px;
+	font-family: courier;
+	background:white;
+	border: 2px solid bisque;
+	border-radius: 10%;
+}
+
+.GameButton:hover{ 
+	background-color:#FF4500;
+}
