@@ -12,7 +12,7 @@ window.onload= function (){
                 window.open('../home/home.html','_self', false);
             })
             .catch(function(error) {
-                alert("Invalid email and password combination! Please try again.")
+                $(".error").append('<p>Invalid email and password combination</p>');
             });
     });
 

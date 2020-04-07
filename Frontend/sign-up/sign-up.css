@@ -32,7 +32,7 @@ body {
 }
 
 .bottom {
-    padding-top: 35px;
+    padding-top: 20px;
     text-align: center;
 }
 
@@ -43,4 +43,10 @@ body {
 .sign-up {
     display: flex;
     justify-content: center;
+}
+
+.error {
+    text-align: center;
+    color: red;
+    font-size: small;
 }
