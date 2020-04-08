@@ -15,6 +15,5 @@ window.onload= function (){
                 $(".error").append('<p>Invalid email and password combination</p>');
             });
     });
-
 }
 

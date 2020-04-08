@@ -14,9 +14,9 @@ body {
     background-color: azure;
     border: 7px solid bisque;
     border-radius: 10%;
-    height: 375px;
-    width: 400px;
-	transform: translate(-50%, -50%);
+    height: 275px;
+    width: 425px;
+    transform: translate(-50%, -50%);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -24,27 +24,12 @@ body {
 
 .box p {
     text-align: center;
-	padding-top: 25px;
+}
+
+.box a {
+    text-align: center;
 }
 
 .box h3 {
     text-align: center;
-}
-
-.GameModeButton {
-	display: flex;
-    justify-content: center;
-	padding-top: 25px;
-}
-
-.GameButton{
-	font-size: 17px;
-	font-family: courier;
-	background:white;
-	border: 2px solid bisque;
-	border-radius: 10%;
-}
-
-.GameButton:hover{ 
-	background-color:#FF4500;
 }

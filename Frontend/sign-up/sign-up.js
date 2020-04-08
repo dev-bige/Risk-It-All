@@ -22,7 +22,6 @@ window.onload= function (){
                         Username: userUsername,
                         ExperienceLevel: userVar,
                         Email: userEmail,
-                        Password: userPassword
                     })
                     .then(user => {
                         window.open('../home/home.html','_self', false);
@@ -31,7 +30,6 @@ window.onload= function (){
                 else {
                     auth.stop();
                 }
-
             })
             .catch(error => {
                 this.setTimeout(function() {
@@ -39,10 +37,13 @@ window.onload= function (){
                         case 'auth/email-already-in-use':
                             // alert('${userEmail} already in use, try to login or reset password');
                             $(".error").append('<p>' + userEmail + ' already in use, try to login or reset password' + '</p>');
+                            auth.stop();
                         case 'auth/invalid-email':
                             $(".error").append('<p>' + userEmail + ' is not a valid email, try re-entering your email' + '</p>');
+                            auth.stop();
                         case 'auth/weak-password':
                            $(".error").append('<p> The password you entered is too weak. </p>');
+                           auth.stop();
                         default:
                             console.log(error);
                     }
