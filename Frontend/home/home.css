@@ -27,6 +27,12 @@ body {
 	padding-top: 25px;
 }
 
+.logoutButton {
+    padding-top: 25px;
+    display: flex;
+    justify-content: center;
+}
+
 .box h3 {
     text-align: center;
 }
