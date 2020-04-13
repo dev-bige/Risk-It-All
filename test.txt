@@ -1,3 +1,0 @@
-Testing a push of a text file to github repo
-Matthew G. Hoskins
-3/27/20
