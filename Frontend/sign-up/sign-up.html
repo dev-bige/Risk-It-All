@@ -23,14 +23,15 @@
                 <label for="re-enter">Re-enter Password:</label><br>
                 <input type="password" id="re-enter" name="re-enter" size=48><br>
                 <label for="experience">Experience:</label><br>
-                    <select id="experience">
+                    <select id="experience" name="experience">
                         <option value="empty"></option>
                         <option value="beginner">Beginner</option>
                         <option value="intermediate">Intermediate</option>
                         <option value="expert">Expert</option>
                     </select>
             </form>
-            <div class="error">
+            <div class="error" id="error">
+                <p class="Perror" id="Perror"></p>
             </div>
             <div class="sign-up">
                 <button type="button" id="buttonSignUp" class="btn btn-primary">Sign Up!</button>

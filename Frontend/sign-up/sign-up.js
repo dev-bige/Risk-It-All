@@ -13,42 +13,39 @@ window.onload= function (){
         const userPassword = signUpForm['password'].value;
         const userPasswordTwo = signUpForm['re-enter'].value;
 
-        auth.createUserWithEmailAndPassword(userEmail, userPassword)
-            .then(cred => {
-                if (this.validateSignUp(userfirst, userlast, userExp, userPassword, userPasswordTwo)) {
-                    db.collection("users").add({
-                        FirstName:  userfirst,
-                        LastName: userlast,
-                        Username: userUsername,
-                        ExperienceLevel: userVar,
-                        Email: userEmail,
-                    })
-                    .then(user => {
-                        window.open('../home/home.html','_self', false);
-                    });
-                }
-                else {
-                    auth.stop();
-                }
-            })
-            .catch(error => {
-                this.setTimeout(function() {
-                    switch (error.code) {
-                        case 'auth/email-already-in-use':
-                            // alert('${userEmail} already in use, try to login or reset password');
-                            $(".error").append('<p>' + userEmail + ' already in use, try to login or reset password' + '</p>');
-                            auth.stop();
-                        case 'auth/invalid-email':
-                            $(".error").append('<p>' + userEmail + ' is not a valid email, try re-entering your email' + '</p>');
-                            auth.stop();
-                        case 'auth/weak-password':
-                           $(".error").append('<p> The password you entered is too weak. </p>');
-                           auth.stop();
-                        default:
-                            console.log(error);
-                    }
-                }, 0);
-            });
+        if (this.validateSignUp(userfirst, userlast, userVar, userPassword, userPasswordTwo)) {
+            auth.createUserWithEmailAndPassword(userEmail, userPassword)
+                .then(cred => {
+                    
+                        db.collection("users").add({
+                            FirstName:  userfirst,
+                            LastName: userlast,
+                            Username: userUsername,
+                            ExperienceLevel: userVar,
+                            Email: userEmail,
+                        })
+                        .then(user => {
+                            window.open('../home/home.html','_self', false);
+                        });
+                })
+                .catch(error => {
+                    this.setTimeout(function() {
+                        switch (error.code) {
+                            case 'auth/email-already-in-use':
+                                $(".Perror").text(userEmail + ' already in use, try to login or reset password');
+                                break;
+                            case 'auth/invalid-email':
+                                $(".Perror").text(userEmail + ' is not a valid email, try re-entering your email');
+                                break;
+                            case 'auth/weak-password':
+                                $(".Perror").text('The password you entered is too weak');
+                                break;
+                            default:
+                                console.log(error);
+                        }
+                    }, 0);
+                });
+        }
     });
 }
 
@@ -63,19 +60,19 @@ function validateSignUp(userfirst, userlast, userExp, password1, password2) {
     }
     else {
         if (!firstNameValid) {
-            $(".error").append('<p>Your first name is invalid, may only contain letters or numbers</p>');
+            $(".Perror").text('Your first name is invalid, may only contain letters or numbers');
             return false;
         }
         else if (!lastNameValid) {
-            $(".error").append('<p>Your last name is invalid, may only contain letters or numbers</p>');
+            $(".Perror").text('Your last name is invalid, may only contain letters or numbers');
             return false;
         }
         else if (!experienceValid) {
-            $(".error").append('<p>You must select an option from the dropdown</p>');
+            $(".Perror").text('You must select an option from the dropdown');
             return false;
         }
         else if (!passwordValid) {
-            $(".error").append('<p>Your passwords must match</p>');
+            $(".Perror").text('Your passwords must match');
             return false;
         }
     }
