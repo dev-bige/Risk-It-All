@@ -20,6 +20,16 @@ div{
 	float: left;
 }
 
+.innerBoard {
+	background-color: black;
+	width: 90%;
+	height: 84.5%;
+	float: left;
+	margin: 2.3%;
+	/*border-style: Solid;
+	border-color: dark gray;*/
+}
+
 .right-tab{
 	text-align: center;
 	background-color: black;
@@ -41,4 +51,32 @@ div{
 .player{
 	height: 15%;
 	margin: 5%;
+}
+
+.square {
+	background: gray;
+	width: 10%;
+	height: 10%;
+	border-style: dashed;
+	border-color: dark gray;
+}
+
+.square h1 {
+	color: black;
+	font-size: 100%;
+	text-align: center;
+}
+
+.blanksquare {
+	background: navy;
+	width: 10%;
+	height: 10%;
+	border-style: solid;
+	border-color: dark gray;
+}
+
+.blanksquare h1 {
+	color: black;
+	font-size: 100%;
+	text-align: center;
 }
