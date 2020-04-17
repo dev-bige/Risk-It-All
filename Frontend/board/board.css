@@ -80,3 +80,87 @@ div{
 	font-size: 100%;
 	text-align: center;
 }
+
+.bluesquare {
+	background: skyblue;
+	width: 10%;
+	height: 10%;
+	border-style: dashed;
+	border-color: dark gray;
+}
+
+.bluesquare h1 {
+	color: black;
+	font-size: 100%;
+	text-align: center;
+}
+
+.redsquare {
+	background: red;
+	width: 10%;
+	height: 10%;
+	border-style: dashed;
+	border-color: dark gray;
+}
+
+.redsquare h1 {
+	color: black;
+	font-size: 100%;
+	text-align: center;
+}
+
+.orangesquare {
+	background: orange;
+	width: 10%;
+	height: 10%;
+	border-style: dashed;
+	border-color: dark gray;
+}
+
+.orangesquare h1 {
+	color: black;
+	font-size: 100%;
+	text-align: center;
+}
+
+.greensquare {
+	background: green;
+	width: 10%;
+	height: 10%;
+	border-style: dashed;
+	border-color: dark gray;
+}
+
+.greensquare h1 {
+	color: black;
+	font-size: 100%;
+	text-align: center;
+}
+
+.violetsquare {
+	background: violet;
+	width: 10%;
+	height: 10%;
+	border-style: dashed;
+	border-color: dark gray;
+}
+
+.violetsquare h1 {
+	color: black;
+	font-size: 100%;
+	text-align: center;
+}
+
+.pinksquare {
+	background: pink;
+	width: 10%;
+	height: 10%;
+	border-style: dashed;
+	border-color: dark gray;
+}
+
+.pinksquare h1 {
+	color: black;
+	font-size: 100%;
+	text-align: center;
+}
