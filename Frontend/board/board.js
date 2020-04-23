@@ -37,13 +37,19 @@ function tilePlay(tileId) {
 
 
 function boardSet(tileId) {
+	//variable for the current class
+	var curClass = document.getElementById(tileId).className
 	//board setup code
 	if (currPhase === -1){
 		//check to see if the tile is occupied
-		if (document.getElementById(tileId).className !== "square") alert("Please select an unoccupied tile");
+		if (curClass !== "square") alert("Please select an unoccupied tile");
 		else {
 			//Change the class of the tile to change color
-			document.getElementById(tileId).className = (tileTitle[currStart]);			
+			document.getElementById(tileId).className = (tileTitle[currStart]);	
+			curClass = document.getElementById(tileId).className;
+			//Update territory and income for that player
+			territorySet(curClass);
+			//incomeSet(curClass);
 			//Change the indicator of what is happening			
 			currStart++;
 			if(currStart === 6) currStart = 0;
@@ -53,4 +59,29 @@ function boardSet(tileId) {
 			if (occupiedSpacesSet === 56) document.getElementById("currentPhase").innerHTML = (gamePhase[++currPhase]);			
 		}
 	}
+}
+
+function territorySet(curClass) {
+	if(curClass === "bluesquare") {
+		document.getElementById("blueTerritories").innerHTML = ('Territories: ' + ++blueTerr);
+	}
+	else if (curClass === "redsquare") {
+		document.getElementById("redTerritories").innerHTML = ('Territories: ' + ++redTerr);
+	}
+	else if (curClass === "orangesquare") {
+		document.getElementById("orangeTerritories").innerHTML = ('Territories: ' + ++orangeTerr);
+	}
+	else if (curClass === "greensquare") {
+		document.getElementById("greenTerritories").innerHTML = ('Territories: ' + ++greenTerr);
+	}
+	else if (curClass === "violetsquare") {
+		document.getElementById("violetTerritories").innerHTML = ('Territories: ' + ++violetTerr);
+	}
+	else {
+		document.getElementById("pinkTerritories").innerHTML = ('Territories: ' + ++pinkTerr);
+	}
+}
+
+function incomeSet(curClass) {
+	
 }
