@@ -4,7 +4,7 @@ var gameStart = new Array("Skyblue Select", "Red Select", "Orange Select", "Gree
 var tileTitle = new Array("bluesquare", "redsquare", "orangesquare", "greensquare", "violetsquare", "pinksquare");
 var currPhase = -1;
 var currStart = 0;
-var occupiedSpacesSet = 0; //Max for board is 56
+var occupiedSpacesSet = 0; //Max for board is 60
 
 //variables for Territories controled by players
 var blueTerr = 0;
@@ -35,7 +35,7 @@ function tilePlay(tileId) {
 	//game play interaction
 }
 
-
+//Code for setting up the board
 function boardSet(tileId) {
 	//variable for the current class
 	var curClass = document.getElementById(tileId).className
@@ -49,18 +49,19 @@ function boardSet(tileId) {
 			curClass = document.getElementById(tileId).className;
 			//Update territory and income for that player
 			territorySet(curClass);
-			//incomeSet(curClass);
+			incomeSet(curClass);
 			//Change the indicator of what is happening			
 			currStart++;
 			if(currStart === 6) currStart = 0;
 			document.getElementById("currentPhase").innerHTML = (gameStart[currStart]);
 			occupiedSpacesSet++;
 			//check to see if the board is fully setup - if it is it will change phase
-			if (occupiedSpacesSet === 56) document.getElementById("currentPhase").innerHTML = (gamePhase[++currPhase]);			
+			if (occupiedSpacesSet === 60) document.getElementById("currentPhase").innerHTML = (gamePhase[++currPhase]);			
 		}
 	}
 }
 
+//Adds in territory tracker when picking starting tiles
 function territorySet(curClass) {
 	if(curClass === "bluesquare") {
 		document.getElementById("blueTerritories").innerHTML = ('Territories: ' + ++blueTerr);
@@ -82,6 +83,24 @@ function territorySet(curClass) {
 	}
 }
 
+//Adds in income tracker when picking starting tiles
 function incomeSet(curClass) {
-	
+	if(curClass === "bluesquare") {
+		document.getElementById("blueIncome").innerHTML = ('Income: ' + ++blueIn);
+	}
+	else if (curClass === "redsquare") {
+		document.getElementById("redIncome").innerHTML = ('Income: ' + ++redIn);
+	}
+	else if (curClass === "orangesquare") {
+		document.getElementById("orangeIncome").innerHTML = ('Income: ' + ++orangeIn);
+	}
+	else if (curClass === "greensquare") {
+		document.getElementById("greenIncome").innerHTML = ('Income: ' + ++greenIn);
+	}
+	else if (curClass === "violetsquare") {
+		document.getElementById("violetIncome").innerHTML = ('Income: ' + ++violetIn);
+	}
+	else {
+		document.getElementById("pinkIncome").innerHTML = ('Income: ' + ++pinkIn);
+	}
 }
