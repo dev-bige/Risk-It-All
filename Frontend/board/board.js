@@ -6,6 +6,21 @@ var currPhase = -1;
 var currStart = 0;
 var occupiedSpacesSet = 0; //Max for board is 56
 
+//variables for Territories controled by players
+var blueTerr = 0;
+var redTerr = 0;
+var orangeTerr = 0;
+var greenTerr = 0;
+var violetTerr = 0;
+var pinkTerr = 0;
+//variables for Income for each player
+var blueIn = 0;
+var redIn = 0;
+var orangeIn = 0;
+var greenIn = 0;
+var violetIn = 0;
+var pinkIn = 0;
+
 function endPhase() {
 	if(currPhase === 11) currPhase = 0;
 	document.getElementById("currentPhase").innerHTML = (gamePhase[++currPhase]);
@@ -15,7 +30,9 @@ function endPhase() {
 
 function tilePlay(tileId) {
 	//call board setup code
-	boardSet(tileId);
+	boardSet(tileId);	
+	
+	//game play interaction
 }
 
 

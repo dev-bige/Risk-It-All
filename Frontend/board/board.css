@@ -53,6 +53,13 @@ div{
 	margin: 5%;
 }
 
+.player h1{
+	color: black;
+	font-size: 90%;
+	font-family: "Lucida Console", Courier, monospace;
+	text-align: center;
+}
+
 .square {
 	background: gray;
 	width: 10%;
@@ -164,3 +171,4 @@ div{
 	font-size: 100%;
 	text-align: center;
 }
+
