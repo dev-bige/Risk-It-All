@@ -2,6 +2,7 @@ var gamePhase = new Array("Skyblue Recruit", "Skyblue Attack", "Red Recruit", "R
 						"Green Attack", "Violet Recruit", "Violet Attack", "Pink Recruit", "Pink Attack");
 var gameStart = new Array("Skyblue Select", "Red Select", "Orange Select", "Green Select", "Violet Select", "Pink Select");
 var tileTitle = new Array("bluesquare", "redsquare", "orangesquare", "greensquare", "violetsquare", "pinksquare");
+var currTileTitle = 0;
 var currPhase = -1;
 var currStart = 0;
 var occupiedSpacesSet = 0; //Max for board is 60
@@ -24,41 +25,66 @@ var pinkIn = 0;
 function endPhase() {
 	if(currPhase === 11) currPhase = 0;
 	document.getElementById("currentPhase").innerHTML = (gamePhase[++currPhase]);
+	//incrament the current tile doing things when switching from attack to recruit 
+	if (currPhase % 2 == 0) {
+		document.getElementById("directionHead").innerHTML = "Choose Fortification";
+		document.getElementById("directions").innerHTML = tileTitle[currTileTitle] + ": Select any tile occupied by your color to add 1 troop number to the territory";
+	} else {
+		currTileTitle++;
+	}
 }
 
 
 
 function tilePlay(tileId) {
-	//call board setup code
-	boardSet(tileId);	
+	//call board setup code when needed
+	if (currPhase === -1) boardSet(tileId);	
+	else {		
+		//game play interaction
+		//When the phase is even - will be a recruiting phase
+		if (currPhase % 2 == 0) {
+			recruiting(tileId);
+		} else {
+			//Else the phase will be odd - attack phase
+			attacking(tileId);
+		}
+	}
+}
+
+function recruiting(tileId) {
+	//variable for the current class
+	var curClass = document.getElementById(tileId).className;
+	if (curClass !== tileTitle[currTileTitle]) alert("Please select your own tile: " + tileTitle[currTileTitle]);
+}
+
+function attacking(tileId) {
 	
-	//game play interaction
 }
 
 //Code for setting up the board
 function boardSet(tileId) {
 	//variable for the current class
-	var curClass = document.getElementById(tileId).className
-	//board setup code
-	if (currPhase === -1){
-		//check to see if the tile is occupied
-		if (curClass !== "square") alert("Please select an unoccupied tile");
-		else {
-			//Change the class of the tile to change color
-			document.getElementById(tileId).className = (tileTitle[currStart]);	
-			curClass = document.getElementById(tileId).className;
-			//Update territory and income for that player
-			territorySet(curClass);
-			incomeSet(curClass);
-			//Change the indicator of what is happening			
-			currStart++;
-			if(currStart === 6) currStart = 0;
-			document.getElementById("currentPhase").innerHTML = (gameStart[currStart]);
-			occupiedSpacesSet++;
-			//check to see if the board is fully setup - if it is it will change phase
-			if (occupiedSpacesSet === 60) document.getElementById("currentPhase").innerHTML = (gamePhase[++currPhase]);			
+	var curClass = document.getElementById(tileId).className;
+	//board setup code	
+	//check to see if the tile is occupied
+	if (curClass !== "square") alert("Please select an unoccupied tile");
+	else {
+		//Change the class of the tile to change color
+		document.getElementById(tileId).className = (tileTitle[currStart]);	
+		curClass = document.getElementById(tileId).className;
+		//Update territory and income for that player
+		territorySet(curClass);
+		incomeSet(curClass);
+		//Change the indicator of what is happening			
+		currStart++;
+		if(currStart === 6) currStart = 0;
+		document.getElementById("currentPhase").innerHTML = (gameStart[currStart]);
+		occupiedSpacesSet++;
+		//check to see if the board is fully setup - if it is it will change phase
+		if (occupiedSpacesSet === 60) {
+			endPhase();
 		}
-	}
+	}	
 }
 
 //Adds in territory tracker when picking starting tiles
