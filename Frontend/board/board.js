@@ -71,8 +71,19 @@ function tilePlay(tileId) {
 		} else {
 			//Else the phase will be odd - attack phase
 			attacking(tileId);
+			resetTerritoryVal():
+			resetIncomeVal();
 		}
 	}
+}
+
+function resetTerritoryVal() {
+	document.getElementById("blueTerritories").innerHTML = ('Territories: ' + blueTerr);
+	document.getElementById("redTerritories").innerHTML = ('Territories: ' + redTerr);
+	document.getElementById("orangeTerritories").innerHTML = ('Territories: ' + orangeTerr);
+	document.getElementById("greenTerritories").innerHTML = ('Territories: ' + greenTerr);
+	document.getElementById("violetTerritories").innerHTML = ('Territories: ' + violetTerr);
+	document.getElementById("pinkTerritories").innerHTML = ('Territories: ' + pinkTerr);
 }
 
 function resetIncomeVal(){
