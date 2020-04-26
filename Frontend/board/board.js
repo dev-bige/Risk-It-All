@@ -54,7 +54,13 @@ function tilePlay(tileId) {
 function recruiting(tileId) {
 	//variable for the current class
 	var curClass = document.getElementById(tileId).className;
-	if (curClass !== tileTitle[currTileTitle]) alert("Please select your own tile: " + tileTitle[currTileTitle]);
+	if (curClass !== tileTitle[currTileTitle]) {
+		alert("Please select your own tile: " + tileTitle[currTileTitle]);
+	}
+	else {
+		var troopId = tileId + ' Troops';
+		document.getElementById(troopId).textContent++;
+	}
 }
 
 function attacking(tileId) {
