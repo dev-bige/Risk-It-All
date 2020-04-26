@@ -44,6 +44,7 @@ function tilePlay(tileId) {
 		//When the phase is even - will be a recruiting phase
 		if (currPhase % 2 == 0) {
 			recruiting(tileId);
+			resetIncomeVal();
 		} else {
 			//Else the phase will be odd - attack phase
 			attacking(tileId);
@@ -51,16 +52,90 @@ function tilePlay(tileId) {
 	}
 }
 
+function resetIncomeVal(){
+	blueIn == blueTerr;
+	document.getElementById("blueIncome").innerHTML = ('Income: ' + blueIn);
+	redIn == redTerr;
+	document.getElementById("redIncome").innerHTML = ('Income: ' + redIn);
+	orangeIn == orangeTerr;
+	document.getElementById("orangeIncome").innerHTML = ('Income: ' + orangeIn);
+	greenIn == greenTerr;
+	document.getElementById("greenIncome").innerHTML = ('Income: ' + greenIn);
+	violetIn == violetTerr;
+	document.getElementById("violetIncome").innerHTML = ('Income: ' + violetIn);
+	pinkIn == pinkTerr;
+	document.getElementById("pinkIncome").innerHTML = ('Income: ' + pinkIn);
+}
+
 function recruiting(tileId) {
 	//variable for the current class
 	var curClass = document.getElementById(tileId).className;
+	//if selected tile owned by other player
 	if (curClass !== tileTitle[currTileTitle]) {
 		alert("Please select your own tile: " + tileTitle[currTileTitle]);
 	}
 	else {
-		var troopId = tileId + ' Troops';
-		document.getElementById(troopId).textContent++;
+		var recruitValid = getRecruiter(curClass);
+		//Incrament troop count on tile when owned with income
+		if (recruitValid) {
+			var troopId = tileId + ' Troops';
+			document.getElementById(troopId).textContent++;
+		}		
 	}
+}
+
+//Manage if recruit is valid and edit the income
+function getRecruiter(curClass) {
+	var recruitValid = false;
+	if (curClass == "bluesquare") {
+		if (blueIn > 0){
+			blueIn--;	
+			recruitValid = true;
+		} else {
+			endRecruit(curClass)
+		}
+	} else if (curClass == "redsquare") {
+		if (redIn > 0) {
+			redIn--;
+			recruitValid = true;
+		} else {
+			endRecruit(curClass)
+		}
+	} else if (curClass == "orangesquare") {
+		if (orangeIn > 0) {
+			orangeIn--;
+			recruitValid = true;
+		} else {
+			endRecruit(curClass)
+		}
+	} else if (curClass == "greensquare") {
+		if (greenIn > 0) {
+			greenIn--;
+			recruitValid = true;
+		} else {
+			endRecruit(curClass)
+		}
+	} else if (curClass == "violetsquare") {
+		if (violetIn > 0) {
+			violetIn--;
+			recruitValid = true;
+		} else {
+			endRecruit(curClass)
+		}
+	} else {
+		if (pinkIn > 0) {
+			pinkIn--;
+			recruitValid = true;
+		} else {
+			endRecruit(curClass)
+		}
+	}
+	return recruitValid;
+}
+
+function endRecruit(curClass) {
+	alert("No more troops to recruit for " + curClass);
+	endPhase();
 }
 
 function attacking(tileId) {
