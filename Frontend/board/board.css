@@ -46,6 +46,14 @@ div{
 	position: absolute;
 	bottom: 20%;
 	left: 4%;
+	width: 12%;
+	transition-duration: 0.4s;
+	background-color: green;
+}
+
+.skip-button:hover{
+	background-color: red;
+	color: white;
 }
 
 .player{
