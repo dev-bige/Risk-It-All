@@ -23,18 +23,41 @@ var violetIn = 0;
 var pinkIn = 0;
 
 function endPhase() {
+	winCondition();
 	if(currPhase === 11) currPhase = 0;
 	document.getElementById("currentPhase").innerHTML = (gamePhase[++currPhase]);
 	//incrament the current tile doing things when switching from attack to recruit 
 	if (currPhase % 2 == 0) {
 		document.getElementById("directionHead").innerHTML = "Choose Fortification";
-		document.getElementById("directions").innerHTML = tileTitle[currTileTitle] + ": Select any tile occupied by your color to add 1 troop number to the territory";
+		document.getElementById("directions").innerHTML = tileTitle[currTileTitle] + ": Select any tile occupied by your color to add 1 troop number to the territory until troop income is 0";
 	} else {
+		document.getElementById("directionHead").innerHTML = "Attack Phase";
+		document.getElementById("directions").innerHTML = tileTitle[currTileTitle] + ": Select any tile occupied by your color and then select a neighboring tile not occupied by you to attack";
 		currTileTitle++;
 	}
 }
 
-
+function winCondition() {
+	if (blueTerr === occupiedSpacesSet) {
+		alert("Player Skyblue has won the game!  The game will be reset.  Play again if you wish");
+		location.reload();
+	} else if (redTerr === occupiedSpacesSet) {
+		alert("Player Red has won the game!  The game will be reset.  Play again if you wish");
+		location.reload();
+	} else if (orangeTerr === occupiedSpacesSet) {
+		alert("Player Orange has won the game!  The game will be reset.  Play again if you wish");
+		location.reload();
+	} else if (greenTerr === occupiedSpacesSet) {
+		alert("Player Green has won the game!  The game will be reset.  Play again if you wish");
+		location.reload();
+	} else if (violetTerr === occupiedSpacesSet) {
+		alert("Player Violet has won the game!  The game will be reset.  Play again if you wish");
+		location.reload();
+	} else if (pinkTerr === occupiedSpacesSet) {
+		alert("Player Pink has won the game!  The game will be reset.  Play again if you wish");
+		location.reload();
+	}
+}
 
 function tilePlay(tileId) {
 	//call board setup code when needed
