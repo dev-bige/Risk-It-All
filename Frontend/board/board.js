@@ -135,7 +135,7 @@ function getRecruiter(curClass) {
 			blueIn--;
 			recruitValid = true;
 		} else {
-			endRecruit(curClass)
+			endRecruit(curClass);
 		}
 		document.getElementById("blueIncome").innerHTML = ('Income: ' + blueIn);
 	} else if (curClass == "redsquare") {
@@ -151,7 +151,7 @@ function getRecruiter(curClass) {
 			orangeIn--;
 			recruitValid = true;
 		} else {
-			endRecruit(curClass)
+			endRecruit(curClass);
 		}
 		document.getElementById("orangeIncome").innerHTML = ('Income: ' + orangeIn);
 	} else if (curClass == "greensquare") {
@@ -159,7 +159,7 @@ function getRecruiter(curClass) {
 			greenIn--;
 			recruitValid = true;
 		} else {
-			endRecruit(curClass)
+			endRecruit(curClass);
 		}
 		document.getElementById("greenIncome").innerHTML = ('Income: ' + greenIn);
 	} else if (curClass == "violetsquare") {
@@ -167,7 +167,7 @@ function getRecruiter(curClass) {
 			violetIn--;
 			recruitValid = true;
 		} else {
-			endRecruit(curClass)
+			endRecruit(curClass);
 		}
 		document.getElementById("violetIncome").innerHTML = ('Income: ' + violetIn);
 	} else {
@@ -175,7 +175,7 @@ function getRecruiter(curClass) {
 			pinkIn--;
 			recruitValid = true;
 		} else {
-			endRecruit(curClass)
+			endRecruit(curClass);
 		}
 		document.getElementById("pinkIncome").innerHTML = ('Income: ' + pinkIn);
 	}
@@ -242,6 +242,7 @@ function attacking(tileId) {
 			} else {
 				document.getElementById("battleReport").innerHTML = "The Defender Won the Battle with " + document.getElementById(troopId).textContent + " remaining";
 			}
+			attackingTroopCount = 0; //Reset the troop count
 			attackCommit = 0; //Reset for other attacking
 		} else {
 			alert("Please select a valid tile to attack: " + tileTitle[currTileTitle]);
@@ -271,10 +272,12 @@ function validAttack(targetTileId) {
 function endAttack() {
 	attackCommit = true;
 	attackPhase++;
+	initialAttackSel = true;
 }
 
 function continueAttacking() {
 	attackPhase = 0;
+	initialAttackSel = true;
 }
 
 //Code for setting up the board
