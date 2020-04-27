@@ -7,6 +7,11 @@ var currPhase = -1;
 var currStart = 0;
 var occupiedSpacesSet = 0; //Max for board is 60
 
+var attackPhase = 0; //keep track of which step of attack is occuring
+var attackCommit = false;
+var attackerTileId = null;
+initialAttackSel = true;
+
 //variables for Territories controled by players
 var blueTerr = 0;
 var redTerr = 0;
@@ -33,7 +38,6 @@ function endPhase() {
 	} else {
 		document.getElementById("directionHead").innerHTML = "Attack Phase";
 		document.getElementById("directions").innerHTML = tileTitle[currTileTitle] + ": Select any tile occupied by your color and then select a neighboring tile not occupied by you to attack";
-		currTileTitle++;
 	}
 }
 
@@ -71,7 +75,7 @@ function tilePlay(tileId) {
 		} else {
 			//Else the phase will be odd - attack phase
 			attacking(tileId);
-			resetTerritoryVal():
+			resetTerritoryVal();
 			resetIncomeVal();
 		}
 	}
@@ -173,7 +177,59 @@ function endRecruit(curClass) {
 }
 
 function attacking(tileId) {
-	
+	var curClass = document.getElementById(tileId).className;
+	//Attacking part 0: Select your own tile
+	if (attackPhase === 0) {
+		document.getElementById("directions").innerHTML = tileTitle[currTileTitle] + ": Select any tile occupied by your color and then click again until it is at 1 or until you hit the commit attack button.";
+		//if selected tile owned by other player
+		if (curClass !== tileTitle[currTileTitle]) {
+			alert("Please select your own tile: " + tileTitle[currTileTitle]);
+		} else {
+			if (initialAttackSel) {
+				attackerTileId = tileId;			
+				initialAttackSel = false;
+			}
+			//Incrament attack phase and reduce troop count	appropriately		
+			var troopId = tileId + ' Troops';
+			var attackButton = document.getElementById("commitAttack")
+			attackButton = "visible";
+			var troopCount = document.getElementById(troopId).textContent
+			if (troopCount > 1 || !attackCommit) {
+				document.getElementById(troopId).textContent--;
+			} else {
+				attackPhase++;
+				initialAttackSel = true;
+			}			
+		}
+	} else if (attackPhase === 1) {
+		//Attacking part 1: Select valid tile to attack
+		document.getElementById("directions").innerHTML = tileTitle[currTileTitle] + ": Select neighboring tile to your attacking tile.";
+		if (curClass == tileTitle[currTileTitle]) {
+			alert("Please select a tile other than your own: " + tileTitle[currTileTitle]);
+		} else if (validAttack(tileId)){
+			//Attack code to determine winners and stuff
+			//TODO
+			currTileTitle++; //increase which color is active
+		} else {
+			alert("Please select a valid tile to attack: " + tileTitle[currTileTitle]);
+		}
+	}
+}
+
+function validAttack(targetTileId) {
+	var validAttackVar = false;
+	var attackerXCor = attackerTileId.substring(0,1);
+	var attackerYCor = attackerTileId.substring(2,3);
+	var validUp = attackerTileId.substring(0,2) + (attackerYCor - 1);
+	var validDown = attackerTileId.substring(0,2) + (attackerYCor + 1);
+	var validLeft = (attackerXCor - 1) + attackerTileId.substring(1,3);
+	var ValidRight = (attackerXCor + 1) + attackerTileId.substring(1,3);
+	if (targetTileId == validUp || targetTileId == validDown || targetTileId == validLeft || targetTileId == validRight) validAttackVar = true;
+	return validAttackVar;
+}
+
+function endAttack() {
+	attackCommit = true;
 }
 
 //Code for setting up the board

@@ -56,6 +56,20 @@ div{
 	color: white;
 }
 
+.attack-button{
+	position: absolute;
+	bottom: 15%;
+	left: 4%;
+	width: 12%;
+	transition-duration: 0.4s;
+	background-color: yellow;
+}
+
+.attack-button:hover{
+	background-color: red;
+	color: white;
+}
+
 .player{
 	height: 15%;
 	margin: 5%;
