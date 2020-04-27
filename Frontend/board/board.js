@@ -77,7 +77,6 @@ function tilePlay(tileId) {
 		//When the phase is even - will be a recruiting phase
 		if (currPhase % 2 == 0) {
 			recruiting(tileId);
-			resetIncomeVal();
 		} else {
 			//Else the phase will be odd - attack phase
 			attacking(tileId);
@@ -133,11 +132,12 @@ function getRecruiter(curClass) {
 	var recruitValid = false;
 	if (curClass == "bluesquare") {
 		if (blueIn > 0){
-			blueIn--;	
+			blueIn--;
 			recruitValid = true;
 		} else {
 			endRecruit(curClass)
 		}
+		document.getElementById("blueIncome").innerHTML = ('Income: ' + blueIn);
 	} else if (curClass == "redsquare") {
 		if (redIn > 0) {
 			redIn--;
@@ -145,6 +145,7 @@ function getRecruiter(curClass) {
 		} else {
 			endRecruit(curClass)
 		}
+		document.getElementById("redIncome").innerHTML = ('Income: ' + redIn);
 	} else if (curClass == "orangesquare") {
 		if (orangeIn > 0) {
 			orangeIn--;
@@ -152,6 +153,7 @@ function getRecruiter(curClass) {
 		} else {
 			endRecruit(curClass)
 		}
+		document.getElementById("orangeIncome").innerHTML = ('Income: ' + orangeIn);
 	} else if (curClass == "greensquare") {
 		if (greenIn > 0) {
 			greenIn--;
@@ -159,6 +161,7 @@ function getRecruiter(curClass) {
 		} else {
 			endRecruit(curClass)
 		}
+		document.getElementById("greenIncome").innerHTML = ('Income: ' + greenIn);
 	} else if (curClass == "violetsquare") {
 		if (violetIn > 0) {
 			violetIn--;
@@ -166,6 +169,7 @@ function getRecruiter(curClass) {
 		} else {
 			endRecruit(curClass)
 		}
+		document.getElementById("violetIncome").innerHTML = ('Income: ' + violetIn);
 	} else {
 		if (pinkIn > 0) {
 			pinkIn--;
@@ -173,6 +177,7 @@ function getRecruiter(curClass) {
 		} else {
 			endRecruit(curClass)
 		}
+		document.getElementById("pinkIncome").innerHTML = ('Income: ' + pinkIn);
 	}
 	return recruitValid;
 }
