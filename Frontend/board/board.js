@@ -48,22 +48,22 @@ function endPhase() {
 }
 
 function winCondition() {
-	if (blueTerr === occupiedSpacesSet) {
+	if (blueTerr == occupiedSpacesSet) {
 		alert("Player Skyblue has won the game!  The game will be reset.  Play again if you wish");
 		location.reload();
-	} else if (redTerr === occupiedSpacesSet) {
+	} else if (redTerr == occupiedSpacesSet) {
 		alert("Player Red has won the game!  The game will be reset.  Play again if you wish");
 		location.reload();
-	} else if (orangeTerr === occupiedSpacesSet) {
+	} else if (orangeTerr == occupiedSpacesSet) {
 		alert("Player Orange has won the game!  The game will be reset.  Play again if you wish");
 		location.reload();
-	} else if (greenTerr === occupiedSpacesSet) {
+	} else if (greenTerr == occupiedSpacesSet) {
 		alert("Player Green has won the game!  The game will be reset.  Play again if you wish");
 		location.reload();
-	} else if (violetTerr === occupiedSpacesSet) {
+	} else if (violetTerr == occupiedSpacesSet) {
 		alert("Player Violet has won the game!  The game will be reset.  Play again if you wish");
 		location.reload();
-	} else if (pinkTerr === occupiedSpacesSet) {
+	} else if (pinkTerr == occupiedSpacesSet) {
 		alert("Player Pink has won the game!  The game will be reset.  Play again if you wish");
 		location.reload();
 	}
@@ -239,6 +239,8 @@ function attacking(tileId) {
 				document.getElementById("battleReport").innerHTML = "The Attacker Won the Battle with " + attackingTroopCount + " troops remaining";
 				document.getElementById(tileId).className = (tileTitle[currTileTitle]);
 				document.getElementById(troopId).textContent = attackingTroopCount;
+				updateTerr(tileTitle[currTileTitle]);
+				winCondition();
 			} else {
 				document.getElementById("battleReport").innerHTML = "The Defender Won the Battle with " + document.getElementById(troopId).textContent + " remaining";
 			}
@@ -248,6 +250,17 @@ function attacking(tileId) {
 			alert("Please select a valid tile to attack: " + tileTitle[currTileTitle]);
 		}
 	}
+}
+
+function updateTerr(curClass) {
+	var colorNewOwner = curClass.substring(0,3);
+	if (colorNewOwner == "blu") blueTerr++;
+	else if (colorNewOwner == "red") redTerr++;
+	else if (colorNewOwner == "ora") orangeTerr++;
+	else if (colorNewOwner == "gre") greenTerr++;
+	else if (colorNewOwner == "vio") violetTerr++;
+	else pinkTerr++;
+	resetTerritoryVal();
 }
 
 function dieRoll() {
