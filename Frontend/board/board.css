@@ -70,6 +70,29 @@ div{
 	color: white;
 }
 
+.attack-button-con{
+	position: absolute;
+	bottom: 10%;
+	left: 4%;
+	width: 12%;
+	transition-duration: 0.4s;
+	background-color: yellow;
+}
+
+.attack-button-con:hover{
+	background-color: red;
+	color: white;
+}
+
+.left-tab h5{
+	position: absolute;
+	bottom: 35%;
+	color: yellow;
+	font-size: 90%;
+	font-family: "Lucida Console", Courier, monospace;
+	text-align: center;
+}
+
 .player{
 	height: 15%;
 	margin: 5%;

@@ -18,10 +18,13 @@
 			<br>
 			<h3 id="directionHead">Select Starting Territories</h3>
 			<p id="directions">Click on any unowned territory</p>
+			<p id="battleReport"></p>
 			<input id="commitAttack" class="attack-button" type="button" onclick="endAttack()" value="End Attack">
+			<input id="continueAttack" class="attack-button-con" type="button" onclick="continueAttacking()" value="Continue Attacking">
 			<script>
 				function visibility() {
 					document.getElementById("commitAttack").style.visibility = "hidden";
+					document.getElementById("continueAttack").style.visibility = "hidden";
 				}
 			</script>
 			<script>visibility();</script>

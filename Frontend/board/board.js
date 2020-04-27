@@ -2,7 +2,7 @@ var gamePhase = new Array("Skyblue Recruit", "Skyblue Attack", "Red Recruit", "R
 						"Green Attack", "Violet Recruit", "Violet Attack", "Pink Recruit", "Pink Attack");
 var gameStart = new Array("Skyblue Select", "Red Select", "Orange Select", "Green Select", "Violet Select", "Pink Select");
 var tileTitle = new Array("bluesquare", "redsquare", "orangesquare", "greensquare", "violetsquare", "pinksquare");
-var currTileTitle = 0;
+var currTileTitle = -1;
 var currPhase = -1;
 var currStart = 0;
 var occupiedSpacesSet = 0; //Max for board is 60
@@ -34,13 +34,17 @@ function endPhase() {
 	document.getElementById("currentPhase").innerHTML = (gamePhase[++currPhase]);
 	//incrament the current tile doing things when switching from attack to recruit 
 	if (currPhase % 2 == 0) {
+		currTileTitle++; //increase which color is active
+		if (currTileTitle == 6) currTileTitle = 0;
 		document.getElementById("commitAttack").style.visibility = "hidden";
+		document.getElementById("continueAttack").style.visibility = "hidden";
 		document.getElementById("directionHead").innerHTML = "Choose Fortification";
 		document.getElementById("directions").innerHTML = tileTitle[currTileTitle] + ": Select any tile occupied by your color to add 1 troop number to the territory until troop income is 0";
 	} else {
 		document.getElementById("directionHead").innerHTML = "Attack Phase";
 		document.getElementById("directions").innerHTML = tileTitle[currTileTitle] + ": Select any tile occupied by your color and then select a neighboring tile not occupied by you to attack";
 	}
+	document.getElementById("battleReport").innerHTML = "";
 }
 
 function winCondition() {
@@ -194,6 +198,7 @@ function attacking(tileId) {
 			//Incrament attack phase and reduce troop count	appropriately		
 			var troopId = tileId + ' Troops';
 			document.getElementById("commitAttack").style.visibility = "visible";
+			document.getElementById("continueAttack").style.visibility = "visible";
 			var troopCount = document.getElementById(troopId).textContent
 			if (troopCount > 1 && !attackCommit) {
 				document.getElementById(troopId).textContent--;
@@ -226,11 +231,13 @@ function attacking(tileId) {
 			}
 			if (attackingTroopCount > 0) {
 				//The attacker has won - switch ownership
+				document.getElementById("battleReport").innerHTML = "The Attacker Won the Battle with " + attackingTroopCount + " troops remaining";
 				document.getElementById(tileId).className = (tileTitle[currTileTitle]);
 				document.getElementById(troopId).textContent = attackingTroopCount;
+			} else {
+				document.getElementById("battleReport").innerHTML = "The Defender Won the Battle with " + document.getElementById(troopId).textContent + " remaining";
 			}
-			currTileTitle++; //increase which color is active
-			if (currTileTitle == 6) currTileTitle = 0;
+			attackCommit = 0; //Reset for other attacking
 		} else {
 			alert("Please select a valid tile to attack: " + tileTitle[currTileTitle]);
 		}
@@ -258,6 +265,11 @@ function validAttack(targetTileId) {
 
 function endAttack() {
 	attackCommit = true;
+	attackPhase++;
+}
+
+function continueAttacking() {
+	attackPhase = 0;
 }
 
 //Code for setting up the board
