@@ -33,6 +33,7 @@ function endPhase() {
 	document.getElementById("currentPhase").innerHTML = (gamePhase[++currPhase]);
 	//incrament the current tile doing things when switching from attack to recruit 
 	if (currPhase % 2 == 0) {
+		document.getElementById("commitAttack").style.visibility = "hidden";
 		document.getElementById("directionHead").innerHTML = "Choose Fortification";
 		document.getElementById("directions").innerHTML = tileTitle[currTileTitle] + ": Select any tile occupied by your color to add 1 troop number to the territory until troop income is 0";
 	} else {
@@ -193,7 +194,7 @@ function attacking(tileId) {
 			var troopId = tileId + ' Troops';
 			document.getElementById("commitAttack").style.visibility = "visible";
 			var troopCount = document.getElementById(troopId).textContent
-			if (troopCount > 1 || !attackCommit) {
+			if (troopCount > 1 && !attackCommit) {
 				document.getElementById(troopId).textContent--;
 			} else {
 				attackPhase++;
