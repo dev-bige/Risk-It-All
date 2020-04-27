@@ -191,8 +191,7 @@ function attacking(tileId) {
 			}
 			//Incrament attack phase and reduce troop count	appropriately		
 			var troopId = tileId + ' Troops';
-			var attackButton = document.getElementById("commitAttack")
-			attackButton = "visible";
+			document.getElementById("commitAttack").style.visibility = "visible";
 			var troopCount = document.getElementById(troopId).textContent
 			if (troopCount > 1 || !attackCommit) {
 				document.getElementById(troopId).textContent--;

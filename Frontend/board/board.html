@@ -18,7 +18,13 @@
 			<br>
 			<h3 id="directionHead">Select Starting Territories</h3>
 			<p id="directions">Click on any unowned territory</p>
-			<input id="commitAttack" class="attack-button" type="button" onclick="endAttack()" style="hidden" value="End Attack">
+			<input id="commitAttack" class="attack-button" type="button" onclick="endAttack()" value="End Attack">
+			<script>
+				function visibility() {
+					document.getElementById("commitAttack").style.visibility = "hidden";
+				}
+			</script>
+			<script>visibility();</script>
 			<input class="skip-button" type="button" onclick="endPhase()" value="End Phase">
 		</div>
 
