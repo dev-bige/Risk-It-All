@@ -4,6 +4,8 @@ var gameStart = new Array("Skyblue Select", "Red Select", "Orange Select", "Gree
 var tileTitle = new Array("bluesquare", "redsquare", "orangesquare", "greensquare", "violetsquare", "pinksquare");
 var currTileTitle = -1;
 var currPhase = -1;
+var maxPhases = 11; // Starts at 0
+var maxTileTitles = 5; //Starts at 0
 var currStart = 0;
 var occupiedSpacesSet = 0; //Max for board is 60
 
@@ -29,8 +31,9 @@ var violetIn = 0;
 var pinkIn = 0;
 
 function endPhase() {
+	removeEliminated();
 	winCondition();
-	if(currPhase === 11) currPhase = 0;
+	if(currPhase === maxPhases) currPhase = 0;
 	document.getElementById("currentPhase").innerHTML = (gamePhase[++currPhase]);
 	//incrament the current tile doing things when switching from attack to recruit 
 	if (currPhase % 2 == 0) {
@@ -45,6 +48,50 @@ function endPhase() {
 		document.getElementById("directions").innerHTML = tileTitle[currTileTitle] + ": Select any tile occupied by your color and then select a neighboring tile not occupied by you to attack";
 	}
 	document.getElementById("battleReport").innerHTML = "";
+}
+
+function removeEliminated() {
+	if(blueTerr == 0) {
+		removePhase("Skyblue");
+		removeTileTitle("bluesquare");
+	} else if (redTerr == 0) {
+		removePhase("Red");
+		removeTileTitle("redsquare");
+	} else if (orangeTerr == 0) {
+		removePhase("Orange");
+		removeTileTitle("orangesquare");
+	} else if (greenTerr == 0) {
+		removePhase("Green");
+		removeTileTitle("greensquare");
+	} else if (violetTerr == 0) {
+		removePhase("Violet");
+		removeTileTitle("violetsquare");
+	} else if (pinkTerr == 0) {
+		removePhase("Pink");
+		removeTileTitle("pinksquare");
+	}
+}
+
+function removePhase(removing) {
+	maxPhases = maxPhases - 2;
+	if (removing == "Skyblue") gamePhase.splice(0,2); //Remove Skyblue from gamePhase array
+	else if (removing == "Red") gamePhase.splice(2,4); //Remove Red from gamePhase array
+	else if (removing == "Orange") gamePhase.splice(4,6); //Remove Orange from gamePhase array
+	else if (removing == "Green") gamePhase.splice(6,8); //Remove Green from gamePhase array
+	else if (removing == "Violet") gamePhase.splice(8,10); //Remove Violet from gamePhase array
+	else if (removing == "Pink") gamePhase.splice(10,12); //Remove Pink from gamePhase array
+	else maxPhases = maxPhases + 2;
+}
+
+function removeTileTitle(removing) {
+	maxTileTitles--;
+	if (removing == "bluesquare") tileTitle.splice(0,1); //Remove bluesquare from tileTitle array
+	else if (removing == "redsquare") tileTitle.splice(1,2); //Remove redsquare from tileTitle array
+	else if (removing == "orangesquare") tileTitle.splice(2,3); //Remove orangesquare from tileTitle array
+	else if (removing == "greensquare") tileTitle.splice(3,4); //Remove greensquare from tileTitle array
+	else if (removing == "violetsquare") tileTitle.splice(4,5); //Remove violetsquare from tileTitle array
+	else if (removing == "pinksquare") tileTitle.splice(5,6); //Remove pinksquare from tileTitle array
+	else maxTileTitles++;
 }
 
 function winCondition() {
