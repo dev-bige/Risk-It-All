@@ -10,7 +10,8 @@ var occupiedSpacesSet = 0; //Max for board is 60
 var attackPhase = 0; //keep track of which step of attack is occuring
 var attackCommit = false;
 var attackerTileId = null;
-initialAttackSel = true;
+var initialAttackSel = true;
+var attackingTroopCount = 0;
 
 //variables for Territories controled by players
 var blueTerr = 0;
@@ -92,17 +93,17 @@ function resetTerritoryVal() {
 }
 
 function resetIncomeVal(){
-	blueIn == blueTerr;
+	blueIn = blueTerr;
 	document.getElementById("blueIncome").innerHTML = ('Income: ' + blueIn);
-	redIn == redTerr;
+	redIn = redTerr;
 	document.getElementById("redIncome").innerHTML = ('Income: ' + redIn);
-	orangeIn == orangeTerr;
+	orangeIn = orangeTerr;
 	document.getElementById("orangeIncome").innerHTML = ('Income: ' + orangeIn);
-	greenIn == greenTerr;
+	greenIn = greenTerr;
 	document.getElementById("greenIncome").innerHTML = ('Income: ' + greenIn);
-	violetIn == violetTerr;
+	violetIn = violetTerr;
 	document.getElementById("violetIncome").innerHTML = ('Income: ' + violetIn);
-	pinkIn == pinkTerr;
+	pinkIn = pinkTerr;
 	document.getElementById("pinkIncome").innerHTML = ('Income: ' + pinkIn);
 }
 
@@ -196,6 +197,7 @@ function attacking(tileId) {
 			var troopCount = document.getElementById(troopId).textContent
 			if (troopCount > 1 && !attackCommit) {
 				document.getElementById(troopId).textContent--;
+				attackingTroopCount++;
 			} else {
 				attackPhase++;
 				initialAttackSel = true;
@@ -208,8 +210,27 @@ function attacking(tileId) {
 			alert("Please select a tile other than your own: " + tileTitle[currTileTitle]);
 		} else if (validAttack(tileId)){
 			//Attack code to determine winners and stuff
-			
+			var attackingRoll = 0;
+			var defendingRoll = 0;
+			var troopId = tileId + ' Troops';
+			while(document.getElementById(troopId).textContent > 1 && attackingTroopCount > 0){
+				attackingRoll = dieRoll();
+				defendingRoll = dieRoll();
+				if (attackingRoll > defendingRoll) {
+					//Lower the defending troop count					
+					document.getElementById(troopId).textContent--;
+				} else {
+					//Lower the attacking troop count
+					attackingTroopCount--;
+				}				
+			}
+			if (attackingTroopCount > 0) {
+				//The attacker has won - switch ownership
+				document.getElementById(tileId).className = (tileTitle[currTileTitle]);
+				document.getElementById(troopId).textContent = attackingTroopCount;
+			}
 			currTileTitle++; //increase which color is active
+			if (currTileTitle == 6) currTileTitle = 0;
 		} else {
 			alert("Please select a valid tile to attack: " + tileTitle[currTileTitle]);
 		}
@@ -222,13 +243,16 @@ function dieRoll() {
 
 function validAttack(targetTileId) {
 	var validAttackVar = false;
-	var attackerXCor = attackerTileId.substring(0,1);
-	var attackerYCor = attackerTileId.substring(2,3);
-	var validUp = attackerTileId.substring(0,2) + (attackerYCor - 1);
-	var validDown = attackerTileId.substring(0,2) + (attackerYCor + 1);
-	var validLeft = (attackerXCor - 1) + attackerTileId.substring(1,3);
-	var ValidRight = (attackerXCor + 1) + attackerTileId.substring(1,3);
-	if (targetTileId == validUp || targetTileId == validDown || targetTileId == validLeft || targetTileId == validRight) validAttackVar = true;
+	var attackerXCor = attackerTileId.substring(5,6);
+	var attackerYCor = attackerTileId.substring(7,8);
+	var validUp = attackerTileId.substring(5,7) + (attackerYCor - 1);
+	attackerYCor++;
+	var validDown = attackerTileId.substring(5,7) + attackerYCor;
+	var validLeft = (attackerXCor - 1) + attackerTileId.substring(6,8);
+	attackerXCor++;
+	var validRight = attackerXCor + attackerTileId.substring(6,8);
+	var targetCord = targetTileId.substring(5,8);
+	if (targetCord == validUp || targetCord == validDown || targetCord == validLeft || targetCord == validRight) validAttackVar = true;
 	return validAttackVar;
 }
 
