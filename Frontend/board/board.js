@@ -208,12 +208,16 @@ function attacking(tileId) {
 			alert("Please select a tile other than your own: " + tileTitle[currTileTitle]);
 		} else if (validAttack(tileId)){
 			//Attack code to determine winners and stuff
-			//TODO
+			
 			currTileTitle++; //increase which color is active
 		} else {
 			alert("Please select a valid tile to attack: " + tileTitle[currTileTitle]);
 		}
 	}
+}
+
+function dieRoll() {
+	return 1 + Math.floor(Math.random() * 6);
 }
 
 function validAttack(targetTileId) {
