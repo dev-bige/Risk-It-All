@@ -8,6 +8,7 @@ var maxPhases = 11; // Starts at 0
 var maxTileTitles = 5; //Starts at 0
 var currStart = 0;
 var occupiedSpacesSet = 0; //Max for board is 60
+var gameBoardSize = 60; 
 
 var attackPhase = 0; //keep track of which step of attack is occuring
 var attackCommit = false;
@@ -54,17 +55,18 @@ var pinkPhaseVal = 10;
 function endPhase() {
 	removeEliminated();
 	winCondition();
-	if(currPhase === maxPhases) currPhase = 0;
+	if(currPhase > maxPhases) currPhase = 0;
 	document.getElementById("currentPhase").innerHTML = (gamePhase[++currPhase]);
 	//incrament the current tile doing things when switching from attack to recruit 
 	if (currPhase % 2 == 0) {
 		currTileTitle++; //increase which color is active
-		if (currTileTitle == 6) currTileTitle = 0;
+		if (currTileTitle > maxTileTitles) currTileTitle = 0;
 		document.getElementById("commitAttack").style.visibility = "hidden";
 		document.getElementById("continueAttack").style.visibility = "hidden";
 		document.getElementById("directionHead").innerHTML = "Choose Fortification";
 		document.getElementById("directions").innerHTML = tileTitle[currTileTitle] + ": Select any tile occupied by your color to add 1 troop number to the territory until troop income is 0";
 	} else {
+		attackPhase = 0;
 		document.getElementById("directionHead").innerHTML = "Attack Phase";
 		document.getElementById("directions").innerHTML = tileTitle[currTileTitle] + ": Select any tile occupied by your color and then select a neighboring tile not occupied by you to attack";
 	}
@@ -72,32 +74,32 @@ function endPhase() {
 }
 
 function removeEliminated() {
-	if(blueTerr == 0) {
+	if(blueTerr == 0 && !blueElim) {
 		removePhase("Skyblue");
 		removeTileTitle("bluesquare");
 		blueElim = true;
 	}
-	if (redTerr == 0) {
+	if (redTerr == 0 && !redElim) {
 		removePhase("Red");
 		removeTileTitle("redsquare");
 		redElim = true;
 	}
-	if (orangeTerr == 0) {
+	if (orangeTerr == 0 && !orangeElim) {
 		removePhase("Orange");
 		removeTileTitle("orangesquare");
 		orangeElim = true;
 	}
-	if (greenTerr == 0) {
+	if (greenTerr == 0 && !greenElim) {
 		removePhase("Green");
 		removeTileTitle("greensquare");
 		greenElim = true;
 	}
-	if (violetTerr == 0) {
+	if (violetTerr == 0 && !violetElim) {
 		removePhase("Violet");
 		removeTileTitle("violetsquare");
 		violetElim = true;
 	}
-	if (pinkTerr == 0) {
+	if (pinkTerr == 0 && !pinkElim) {
 		removePhase("Pink");
 		removeTileTitle("pinksquare");
 		pinkElim = true;
@@ -179,22 +181,22 @@ function removeTileTitle(removing) {
 }
 
 function winCondition() {
-	if (blueTerr == occupiedSpacesSet) {
+	if (blueTerr == gameBoardSize) {
 		alert("Player Skyblue has won the game!  The game will be reset.  Play again if you wish");
 		location.reload();
-	} else if (redTerr == occupiedSpacesSet) {
+	} else if (redTerr == gameBoardSize) {
 		alert("Player Red has won the game!  The game will be reset.  Play again if you wish");
 		location.reload();
-	} else if (orangeTerr == occupiedSpacesSet) {
+	} else if (orangeTerr == gameBoardSize) {
 		alert("Player Orange has won the game!  The game will be reset.  Play again if you wish");
 		location.reload();
-	} else if (greenTerr == occupiedSpacesSet) {
+	} else if (greenTerr == gameBoardSize) {
 		alert("Player Green has won the game!  The game will be reset.  Play again if you wish");
 		location.reload();
-	} else if (violetTerr == occupiedSpacesSet) {
+	} else if (violetTerr == gameBoardSize) {
 		alert("Player Violet has won the game!  The game will be reset.  Play again if you wish");
 		location.reload();
-	} else if (pinkTerr == occupiedSpacesSet) {
+	} else if (pinkTerr == gameBoardSize) {
 		alert("Player Pink has won the game!  The game will be reset.  Play again if you wish");
 		location.reload();
 	}
@@ -456,7 +458,7 @@ function boardSet(tileId) {
 		document.getElementById("currentPhase").innerHTML = (gameStart[currStart]);
 		occupiedSpacesSet++;
 		//check to see if the board is fully setup - if it is it will change phase
-		if (occupiedSpacesSet === 60) {
+		if (occupiedSpacesSet === gameBoardSize) {
 			endPhase();
 		}
 	}	
