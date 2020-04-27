@@ -286,7 +286,8 @@ function attacking(tileId) {
 				document.getElementById("battleReport").innerHTML = "The Attacker Won the Battle with " + attackingTroopCount + " troops remaining";
 				document.getElementById(tileId).className = (tileTitle[currTileTitle]);
 				document.getElementById(troopId).textContent = attackingTroopCount;
-				updateTerr(tileTitle[currTileTitle]);
+				updateTerrVict(tileTitle[currTileTitle]);
+				updateTerrLoss(curClass);
 				winCondition();
 			} else {
 				document.getElementById("battleReport").innerHTML = "The Defender Won the Battle with " + document.getElementById(troopId).textContent + " remaining";
@@ -299,7 +300,7 @@ function attacking(tileId) {
 	}
 }
 
-function updateTerr(curClass) {
+function updateTerrVict(curClass) {
 	var colorNewOwner = curClass.substring(0,3);
 	if (colorNewOwner == "blu") blueTerr++;
 	else if (colorNewOwner == "red") redTerr++;
@@ -307,6 +308,17 @@ function updateTerr(curClass) {
 	else if (colorNewOwner == "gre") greenTerr++;
 	else if (colorNewOwner == "vio") violetTerr++;
 	else pinkTerr++;
+	resetTerritoryVal();
+}
+
+function updateTerrLoss(curClass) {
+	var colorNewOwner = curClass.substring(0,3);
+	if (colorNewOwner == "blu") blueTerr--;
+	else if (colorNewOwner == "red") redTerr--;
+	else if (colorNewOwner == "ora") orangeTerr--;
+	else if (colorNewOwner == "gre") greenTerr--;
+	else if (colorNewOwner == "vio") violetTerr--;
+	else pinkTerr--;
 	resetTerritoryVal();
 }
 
