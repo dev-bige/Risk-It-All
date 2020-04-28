@@ -422,6 +422,7 @@ function updatePhase() {
 	} else if (attackersClass == "pinksquare" && defendingClass == "pinksquare") {
 		currPhase = currPhase - 2;
 	}
+	document.getElementById("currentPhase").innerHTML = (gamePhase[currPhase]);
 }
 
 function updateTerrVict(curClass) {
@@ -431,18 +432,18 @@ function updateTerrVict(curClass) {
 	else if (colorNewOwner == "ora") orangeTerr++;
 	else if (colorNewOwner == "gre") greenTerr++;
 	else if (colorNewOwner == "vio") violetTerr++;
-	else pinkTerr++;
+	else if (colorNewOwner == "pin") pinkTerr++;
 	resetTerritoryVal();
 }
 
-function updateTerrLoss(curClass) {
-	var colorNewOwner = curClass.substring(0,3);
-	if (colorNewOwner == "blu") blueTerr--;
-	else if (colorNewOwner == "red") redTerr--;
-	else if (colorNewOwner == "ora") orangeTerr--;
-	else if (colorNewOwner == "gre") greenTerr--;
-	else if (colorNewOwner == "vio") violetTerr--;
-	else pinkTerr--;
+function updateTerrLoss(defClass) {
+	var colorOldOwner = defClass.substring(0,3);
+	if (colorOldOwner == "blu") blueTerr--;
+	else if (colorOldOwner == "red") redTerr--;
+	else if (colorOldOwner == "ora") orangeTerr--;
+	else if (colorOldOwner == "gre") greenTerr--;
+	else if (colorOldOwner == "vio") violetTerr--;
+	else if (colorOldOwner == "pin") pinkTerr--;
 	resetTerritoryVal();
 }
 
