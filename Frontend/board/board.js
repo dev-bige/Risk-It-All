@@ -108,7 +108,7 @@ function removeEliminated() {
 }
 
 function removePhase(removing) {
-	if (removing == "Skyblue" && !blueElim) {
+	if (removing == "Skyblue") {
 		gamePhase.splice(bluePhaseVal,2); //Remove Skyblue from gamePhase array
 		redPhaseVal = redPhaseVal - 2;
 		orangePhaseVal = orangePhaseVal - 2;
@@ -116,29 +116,29 @@ function removePhase(removing) {
 		violetPhaseVal = violetPhaseVal - 2;
 		pinkPhaseVal = pinkPhaseVal - 2;
 	}
-	else if (removing == "Red" && !redElim) {
+	else if (removing == "Red") {
 		gamePhase.splice(redPhaseVal,2); //Remove Red from gamePhase array		
 		orangePhaseVal = orangePhaseVal - 2;
 		greenPhaseVal = greenPhaseVal - 2;
 		violetPhaseVal = violetPhaseVal - 2;
 		pinkPhaseVal = pinkPhaseVal - 2;
 	}
-	else if (removing == "Orange" && !orangeElim) {
+	else if (removing == "Orange") {
 		gamePhase.splice(orangePhaseVal,2); //Remove Orange from gamePhase array
 		greenPhaseVal = greenPhaseVal - 2;
 		violetPhaseVal = violetPhaseVal - 2;
 		pinkPhaseVal = pinkPhaseVal - 2;
 	}
-	else if (removing == "Green" && !greenElim) {
+	else if (removing == "Green") {
 		gamePhase.splice(greenPhaseVal,2); //Remove Green from gamePhase array
 		violetPhaseVal = violetPhaseVal - 2;
 		pinkPhaseVal = pinkPhaseVal - 2;
 	}
-	else if (removing == "Violet" && !violetElim) {
+	else if (removing == "Violet") {
 		gamePhase.splice(violetPhaseVal,2); //Remove Violet from gamePhase array
 		pinkPhaseVal = pinkPhaseVal - 2;
 	}
-	else if (removing == "Pink" && !pinkElim) {
+	else if (removing == "Pink") {
 		gamePhase.splice(pinkPhaseVal,2); //Remove Pink from gamePhase array
 	}
 	maxPhases = maxPhases - 2;
@@ -146,7 +146,7 @@ function removePhase(removing) {
 }
 
 function removeTileTitle(removing) {
-	if (removing == "bluesquare" && !blueElim) {
+	if (removing == "bluesquare") {
 		tileTitle.splice(blueTileVal,1); //Remove bluesquare from tileTitle array
 		blueTileVal--;
 		orangeTileVal--;
@@ -154,29 +154,29 @@ function removeTileTitle(removing) {
 		violetTileVal--;
 		pinkTileVal--;
 	}
-	else if (removing == "redsquare" && !redElim) {
+	else if (removing == "redsquare") {
 		tileTitle.splice(redTileVal,1); //Remove redsquare from tileTitle array
 		orangeTileVal--;
 		greenTileVal--;
 		violetTileVal--;
 		pinkTileVal--;
 	}
-	else if (removing == "orangesquare" && !orangeElim) {
+	else if (removing == "orangesquare") {
 		tileTitle.splice(orangeTileVal,1); //Remove orangesquare from tileTitle array
 		greenTileVal--;
 		violetTileVal--;
 		pinkTileVal--;
 	}
-	else if (removing == "greensquare" && !greenElim) {
+	else if (removing == "greensquare") {
 		tileTitle.splice(greenTileVal,1); //Remove greensquare from tileTitle array
 		violetTileVal--;
 		pinkTileVal--;
 	}
-	else if (removing == "violetsquare" && !violetElim) {
+	else if (removing == "violetsquare") {
 		tileTitle.splice(violetTileVal,1); //Remove violetsquare from tileTitle array
 		pinkTileVal--;
 	}
-	else if (removing == "pinksquare" && !pinkElim) {
+	else if (removing == "pinksquare") {
 		tileTitle.splice(pinkTileVal,1); //Remove pinksquare from tileTitle array
 	}
 	maxTileTitles--;
