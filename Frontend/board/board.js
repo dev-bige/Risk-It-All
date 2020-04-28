@@ -56,7 +56,7 @@ var pinkPhaseVal = 10;
 function endPhase() {
 	removeEliminated();
 	winCondition();
-	if(currPhase > maxPhases) currPhase = 0;
+	if(currPhase >= maxPhases) currPhase = -1;
 	document.getElementById("currentPhase").innerHTML = (gamePhase[++currPhase]);
 	//incrament the current tile doing things when switching from attack to recruit 
 	if (currPhase % 2 == 0) {
@@ -201,7 +201,22 @@ function winCondition() {
 	} else if (pinkTerr == gameBoardSize) {
 		alert("Player Pink has won the game!  The game will be reset.  Play again if you wish");
 		location.reload();
+	} else if (maxTileTitles == 0) {
+		alert("Player " + lastStanding() + " has won the game!  The game will be reset.  Play again if you wish");
+		location.reload();
 	}
+}
+
+function lastStanding() {
+	var winingTeam;
+	var lastTitle = tileTitle[0];
+	if (lastTitle == "bluesquare") winingTeam = "Skyblue";
+	else if (lastTitle == "redsquare") winingTeam = "Red";
+	else if (lastTitle == "orangesquare") winingTeam = "Orange";
+	else if (lastTitle == "greensquare") winingTeam = "Green";
+	else if (lastTitle == "violetsquare") winingTeam = "Violet";
+	else winingTeam = "Pink";
+	return winingTeam;
 }
 
 function tilePlay(tileId) {
