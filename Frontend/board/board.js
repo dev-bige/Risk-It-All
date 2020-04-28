@@ -15,6 +15,7 @@ var attackCommit = false;
 var attackerTileId = null;
 var initialAttackSel = true;
 var attackingTroopCount = 0;
+var defendingClass = false;
 
 //variables for Territories controled by players
 var blueTerr = 0;
@@ -141,6 +142,7 @@ function removePhase(removing) {
 		gamePhase.splice(pinkPhaseVal,2); //Remove Pink from gamePhase array
 	}
 	maxPhases = maxPhases - 2;
+	updatePhase();
 }
 
 function removeTileTitle(removing) {
@@ -375,6 +377,7 @@ function attacking(tileId) {
 				updateTerrVict(tileTitle[currTileTitle]);
 				updateTerrLoss(curClass);
 				winCondition();
+				defendingClass = document.getElementById(tileId).className;
 			} else {
 				document.getElementById("battleReport").innerHTML = "The Defender Won the Battle with " + document.getElementById(troopId).textContent + " remaining";
 			}
@@ -383,6 +386,41 @@ function attacking(tileId) {
 		} else {
 			alert("Please select a valid tile to attack: " + tileTitle[currTileTitle]);
 		}
+	}
+}
+
+function updatePhase() {
+	attackersClass = document.getElementById(attackerTileId).class;
+	if(attackersClass == "redsquare" && defendingClass == "bluesquare") {
+		currPhase = currPhase - 2;
+	} else if (attackersClass == "orangesquare" && defendingClass == "redsquare") {
+		currPhase = currPhase - 2;
+	} else if (attackersClass == "orangesquare" && defendingClass == "bluesquare") {
+		currPhase = currPhase - 2;
+	} else if (attackersClass == "greensquare" && defendingClass == "bluesquare") {
+		currPhase = currPhase - 2;
+	} else if (attackersClass == "greensquare" && defendingClass == "redsquare") {
+		currPhase = currPhase - 2;
+	} else if (attackersClass == "greensquare" && defendingClass == "orangesquare") {
+		currPhase = currPhase - 2;
+	} else if (attackersClass == "violetsquare" && defendingClass == "redsquare") {
+		currPhase = currPhase - 2;
+	} else if (attackersClass == "violetsquare" && defendingClass == "orangesquare") {
+		currPhase = currPhase - 2;
+	} else if (attackersClass == "violetsquare" && defendingClass == "greensquare") {
+		currPhase = currPhase - 2;
+	} else if (attackersClass == "violetsquare" && defendingClass == "bluesquare") {
+		currPhase = currPhase - 2;
+	} else if (attackersClass == "pinksquare" && defendingClass == "orangesquare") {
+		currPhase = currPhase - 2;
+	} else if (attackersClass == "pinksquare" && defendingClass == "redsquare") {
+		currPhase = currPhase - 2;
+	} else if (attackersClass == "pinksquare" && defendingClass == "bluesquare") {
+		currPhase = currPhase - 2;
+	} else if (attackersClass == "pinksquare" && defendingClass == "greensquare") {
+		currPhase = currPhase - 2;
+	} else if (attackersClass == "pinksquare" && defendingClass == "pinksquare") {
+		currPhase = currPhase - 2;
 	}
 }
 
