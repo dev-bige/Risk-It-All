@@ -468,19 +468,108 @@ function dieRoll() {
 
 function validAttack(targetTileId) {
 	var validAttackVar = false;
-	var attackerXCor = attackerTileId.substring(5,6);
-	var attackerYCor = attackerTileId.substring(7,8);
-	var subYCor = attackerYCor - 1;
-	var validUp = attackerTileId.substring(5,7) + (subYCor);
+	var attackerTileIdLen = attackerTileId.length
+	var dashLoc = dashLocation(attackerTileIdLen);
+	
+	var attackerXCor;
+	var attackerYCor;
+	var subYCor;
+	var subXCor;
+	
+	var validUp;
+	var validDown;
+	var validLeft;
+	var validRight;
+	
+	var verticalLimitLow = 5;
+	var verticalLimitHigh;
+	var horizontalLimitLow;
+	var horizontalLimitHigh;
+	
+	if (attackerTileIdLen == 8) {
+		//Ex Tile 2-2
+		attackerXCor = attackerTileId.substring(5,6);
+		attackerYCor = attackerTileId.substring(7,8);
+		
+		verticalLimitHigh = 7;
+		horizontalLimitLow = 6;
+		horizontalLimitHigh = 8;
+	} else if (attackerTileIdLen == 9) {		
+		if (dashLoc == 6) {
+			//Ex Tile 2-10
+			attackerXCor = attackerTileId.substring(5,6);
+			attackerYCor = attackerTileId.substring(7,9);
+
+			verticalLimitHigh = 7;
+			horizontalLimitLow = 6;
+			horizontalLimitHigh = 9;
+		} else {
+			//Ex Tile 10-2
+			//dashLoc = 7
+			attackerXCor = attackerTileId.substring(5,7);
+			attackerYCor = attackerTileId.substring(8,9);
+
+			verticalLimitHigh = 8;
+			horizontalLimitLow = 7;
+			horizontalLimitHigh = 9;
+		}
+	} else {
+		//Ex Tile 10-10
+		//length is 10 (starting at 1)
+		attackerXCor = attackerTileId.substring(5,7);
+		attackerYCor = attackerTileId.substring(8,10);
+
+		verticalLimitHigh = 8;
+		horizontalLimitLow = 7;
+		horizontalLimitHigh = 10;
+	}
+	
+	subYCor = attackerYCor - 1;
+	validUp = attackerTileId.substring(verticalLimitLow,verticalLimitHigh) + (subYCor);
+	
 	attackerYCor++;
-	var validDown = attackerTileId.substring(5,7) + attackerYCor;
-	var subXCor = attackerXCor - 1;
-	var validLeft = subXCor + attackerTileId.substring(6,8);
+	validDown = attackerTileId.substring(verticalLimitLow,verticalLimitHigh) + attackerYCor;
+	
+	subXCor = attackerXCor - 1;
+	if (subXCor == 0) subXCor = 10;
+	validLeft = subXCor + attackerTileId.substring(horizontalLimitLow,horizontalLimitHigh);
+	
 	attackerXCor++;
-	var validRight = attackerXCor + attackerTileId.substring(6,8);
-	var targetCord = targetTileId.substring(5,8);
+	if (attackerXCor == 11) attackerXCor = 1;
+	validRight = attackerXCor + attackerTileId.substring(horizontalLimitLow,horizontalLimitHigh);
+	
+	var targetCord;
+	var targetTileIdLen = targetTileId.length;
+	if (targetTileIdLen == 8) {
+		targetCord = targetTileId.substring(5,8);
+	} else if (targetTileIdLen == 9) {
+		targetCord = targetTileId.substring(5,9);
+	} else {
+		//length is 10 (starting at 1)
+		targetCord = targetTileId.substring(5,10);
+	}
+	
 	if (targetCord == validUp || targetCord == validDown || targetCord == validLeft || targetCord == validRight) validAttackVar = true;
 	return validAttackVar;
+}
+
+function dashLocation(attackerTileIdLen) {
+	if (attackerTileIdLen == 8){
+		//Ex Tile 2-2 (- at 6 for substring)
+		return 6;
+	} else if (attackerTileIdLen == 9) {
+		//Ex Tile 2-10 or 10-2 (- at 6 or 7 for substring)
+		if (attackerTileId.substring(6,7) == "-") {
+			//- is at 6 for substring
+			return 6;
+		} else {
+			//- is at 7 for substring
+			return 7;
+		}
+	} else {
+		//lenth is 10 (- at 7 for substring)
+		return 7;
+	}
 }
 
 function endAttack() {
