@@ -470,10 +470,12 @@ function validAttack(targetTileId) {
 	var validAttackVar = false;
 	var attackerXCor = attackerTileId.substring(5,6);
 	var attackerYCor = attackerTileId.substring(7,8);
-	var validUp = attackerTileId.substring(5,7) + (attackerYCor - 1);
+	var subYCor = attackerYCor - 1;
+	var validUp = attackerTileId.substring(5,7) + (subYCor);
 	attackerYCor++;
 	var validDown = attackerTileId.substring(5,7) + attackerYCor;
-	var validLeft = (attackerXCor - 1) + attackerTileId.substring(6,8);
+	var subXCor = attackerXCor - 1;
+	var validLeft = subXCor + attackerTileId.substring(6,8);
 	attackerXCor++;
 	var validRight = attackerXCor + attackerTileId.substring(6,8);
 	var targetCord = targetTileId.substring(5,8);
@@ -483,7 +485,7 @@ function validAttack(targetTileId) {
 
 function endAttack() {
 	attackCommit = true;
-	attackPhase++;
+	attackPhase = 1;
 	initialAttackSel = true;
 }
 
