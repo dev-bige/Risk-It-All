@@ -217,3 +217,9 @@ div{
 	text-align: center;
 }
 
+#end {
+	position: absolute;
+	bottom: 10%;
+	left: 4%;
+	width: 12%;
+}

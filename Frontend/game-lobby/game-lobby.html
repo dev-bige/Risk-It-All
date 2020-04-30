@@ -10,23 +10,28 @@
         <main>
             <div class="box">
                 <h3><strong>Game Lobby</strong></h3>
-                <ul>
-                    <li id="gameOne" style="color: green;">
-                        <button id="gameTwoButton" onclick="checkPlayers('gameOne')">Game One 0/6</button>
-                    </li>
-                    <li id="gameTwo" style="color: green;">
-                        <button id="gameTwoButton" onclick="checkPlayers('gameTwo')">Game Two 0/6</button>
-                    </li>
-                    <li style="color: green;">
-                        <button id="gameTwoButton" onclick="checkPlayers('gameThree')">Game Three 0/6</button>
-                    </li>
-                    <li style="color: green;">
-                        <button id="gameTwoButton" onclick="checkPlayers('gameFour')">Game Four 0/6</button>
-                    </li>
-                    <li style="color: green;">
-                        <button id="gameTwoButton" onclick="checkPlayers('gameFive')">Game Five 0/6</button>
-                    </li>
-                </ul>
+                <div class="buttons">
+                    <ul>
+                        <li id="gameOne">
+                            <button class="btn btn-success" id="gameTwoButton" onclick="checkPlayers('gameOne')">Game One 0/6</button>
+                        </li>
+                        <li id="gameTwo">
+                            <button class="btn btn-success" id="gameTwoButton" onclick="checkPlayers('gameTwo')">Game Two 0/6</button>
+                        </li>
+                        <li id="gameThree">
+                            <button class="btn btn-success" id="gameTwoButton" onclick="checkPlayers('gameThree')">Game Three 0/6</button>
+                        </li>
+                        <li id="gameFour">
+                            <button class="btn btn-success" id="gameTwoButton" onclick="checkPlayers('gameFour')">Game Four 0/6</button>
+                        </li>
+                        <li id="gameFive">
+                            <button class="btn btn-success" id="gameTwoButton" onclick="checkPlayers('gameFive')">Game Five 0/6</button>
+                        </li>
+                        <li id="home">
+                            <button class="btn btn-primary" id="btn_home" onclick="parent.location.href = '../home/home.html'">Home</button>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </main>
 

@@ -653,3 +653,12 @@ function incomeSet(curClass) {
 		document.getElementById("pinkIncome").innerHTML = ('Income: ' + ++pinkIn);
 	}
 }
+
+function endGame() {
+	if(confirm("Are you sure you want to quit the game?")) {
+		window.open('../home/home.html','_self', false);
+	}
+	else {
+		
+	}
+}
