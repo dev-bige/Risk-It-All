@@ -373,7 +373,7 @@ function attacking(tileId) {
 			var attackingRoll = 0;
 			var defendingRoll = 0;
 			var troopId = tileId + ' Troops';
-			while(document.getElementById(troopId).textContent > 1 && attackingTroopCount > 0){
+			while(document.getElementById(troopId).textContent > 0 && attackingTroopCount > 0){
 				attackingRoll = dieRoll();
 				defendingRoll = dieRoll();
 				if (attackingRoll > defendingRoll) {
