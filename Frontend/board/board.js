@@ -384,6 +384,7 @@ function attacking(tileId) {
 					attackingTroopCount--;
 				}				
 			}
+			attackPhase = 0;
 			if (attackingTroopCount > 0) {
 				//The attacker has won - switch ownership
 				document.getElementById("battleReport").innerHTML = "The Attacker Won the Battle with " + attackingTroopCount + " troops remaining";
